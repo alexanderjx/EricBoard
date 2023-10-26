@@ -6,10 +6,13 @@
 
     {% if user.is_authenticated %}
 
-        {% if user.first_name == 'Eric' or 'Erik' or 'Erick' %}
-            <p style='color:red;'>Warning: People named {{ user.first_name }} are not allowed to post!.</p>
+        {% if user.first_name == 'Eric' or user.first_name == 'Erik' or user.first_name == 'Erick' %}
+            <p style='color:red;'>Warning: People named {{ user.first_name }} are not allowed to post!</p>
         {% else %}
-            <p>Hi {{ user.first_name|default_if_none:user.username }}! You are {{ user.age }} years old.</p>
+            <p>
+                Hi {{ user.first_name|default_if_none:user.username }}!
+                You are {{ user.age|default_if_none:'UNKNOWN'  }} years old.
+            </p>
         {% endif %}
 
     {% else %}

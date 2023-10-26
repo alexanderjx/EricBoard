@@ -21,18 +21,16 @@
 
             {% if user.is_authenticated %}
 
-                <div class='dropdown text-end'>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success">{{ user.username }}</button>
+                    <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
 
-                    <a href='#' class='d-block link-dark text-decoration-none dropdown-toggle' id='dropdownUser1'
-                        data-bs-toggle='dropdown' aria-expanded='false'>
-                        {{ user.username }}
-                    </a>
-
-                    <ul class='dropdown-menu text-small' aria-labelledby='dropdownUser1'>
+                    <ul class="dropdown-menu">
                         <li><a class='dropdown-item' href='{% url 'password_change' %}'>Change password</a></li>
                         <li><a class='dropdown-item' href='{% url 'logout' %}'>Log Out</a></li>
                     </ul>
-
                 </div>
 
             {% else %}

@@ -6,7 +6,7 @@
     <form action='' method='post'>{% csrf_token %}
         {{ form|crispy }}
 
-        {% if user.first_name == 'Eric' or 'Erik' or 'Erick' %}
+        {% if user.first_name == 'Eric' or user.first_name == 'Erik' or user.first_name == 'Erick' %}
             <p style='color:red;'>Warning: People named {{ user.first_name }} are not allowed to post!.</p>
             <button class='btn btn-success ml-2' type='submit' disabled>Post</button>
         {% else %}
