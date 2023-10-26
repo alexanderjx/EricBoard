@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        {% if user.first_name == 'Eric' or 'Erik' or 'Erick' %}
+            <p style='color:red;'>Warning: People named {{ user.first_name }} are not allowed to post!.</p>
+        {% else %}
+            <p>Hi {{ user.first_name|default_if_none:user.username }}! You are {{ user.age }} years old.</p>
+        {% endif %}
+
+    {% else %}
+        <p>You are not logged in</p>
+    {% endif %}
+
+    <p><a class='btn btn-primary btn-lg' href="{% url 'article_list' %}" role='button'>View all articles</a></p>
+
+
+{% endblock content %}
