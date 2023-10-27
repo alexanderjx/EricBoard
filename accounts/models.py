@@ -6,8 +6,18 @@ class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(null=True, blank=True)
 
     def is_eric(self):
-        for i in ['Erik', 'Eric', 'Erich', 'Erikk', 'Erick', 'Eirik', 'Eirikr', 'Erikr', 'Aeryk', 'Erk']:
-            if self.first_name == i:
+
+        eric_matrix = [
+            'erik', 'eric', 'erich',
+            'erikk', 'erick', 'eirik',
+            'eirikr', 'erikr', 'aeryk',
+            'erk', 'eruc', 'eruk',
+            'eruuc', 'eruuuc', 'eruuuuc',
+            'eruuuuuc'
+        ]
+
+        for i in eric_matrix:
+            if self.first_name.lower() == i:
                 return True
             elif i in self.first_name:
                 return True
