@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+    <a class='btn btn-outline-primary btn-sm' href="{% url 'article_list' %}">All Posts</a>
 
     <div class='article-entry'>
         <h2>{{ object.title }}</h2>
@@ -22,12 +23,14 @@
             {{ form|crispy }}
 
             {% if user.is_eric %}
-                <div class="alert alert-danger" role="alert">
-                  People named {{ user.first_name }} aren't allowed to comment.
+                <button class='btn btn-success m-1' type='submit' disabled>Post</button>
+
+                <div class='alert alert-danger mt-3' role='alert'>
+                    People named {{ user.first_name }} aren't allowed to comment.
                 </div>
-                <button class='btn btn-success ml-2' type='submit' disabled>Post</button>
+
             {% else %}
-                <button class='btn btn-success ml-2' type='submit'>Post</button>
+                <button class='btn btn-success m-1' type='submit'>Post</button>
             {% endif %}
 
         </form>
@@ -45,7 +48,6 @@
             {% endif %}
          </div>
 
-        <a class='btn btn-outline-primary btn-lg' href="{% url 'article_list' %}">All Posts</a>.
     </div>
 
 {% endblock content %}

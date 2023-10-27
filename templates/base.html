@@ -13,42 +13,58 @@
 </head>
 
 <body>
-    <header class='p-3 mb-3 border-bottom'>
+    <header class='mb-3 border-bottom'>
+        <nav class='navbar navbar-expand-lg bg-body-tertiary'>
+            <div class='container-fluid'>
+                <a class='navbar-brand'>EricBoard</a>
 
-        <div class='d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start'>
-            <h1><a class='navbar-brand' href='{% url 'home' %}'>Eric Forum</a></h1>
-            <ul class='nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0'></ul>
+                <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarText' aria-controls='navbarText' aria-expanded='false' aria-label='Toggle navigation'>
+                    <span class='navbar-toggler-icon'></span>
+                </button>
 
-            {% if user.is_authenticated %}
+                <div class='collapse navbar-collapse' id='navbarText'>
 
-                <div class="btn-group">
-                    <button type="button" class="btn btn-success">{{ user.username }}</button>
-                    <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
+                    <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
+                        <li class='nav-item'>
+                            <a class='nav-link active' aria-current='page' href="{% url 'home' %}">Home</a>
+                        </li>
 
-                    <ul class="dropdown-menu">
-                        <li><a class='dropdown-item' href='{% url 'password_change' %}'>Change password</a></li>
-                        <li><a class='dropdown-item' href='{% url 'logout' %}'>Log Out</a></li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href="{% url 'article_list' %}">Posts</a>
+                        </li>
                     </ul>
+
+                    <div class='btn-group me-2'>
+                        {% if user.is_authenticated %}
+
+                            <button type='button' class='btn btn-success'>{{ user.username }}</button>
+
+                            <button type='button' class='btn btn-success dropdown-toggle dropdown-toggle-split' data-bs-toggle='dropdown' aria-expanded="false">
+                                <span class='visually-hidden'>Toggle Dropdown</span>
+                            </button>
+
+                            <ul class='dropdown-menu'>
+                                <li><a class='dropdown-item' href="{% url 'password_change' %}">Change password</a></li>
+                                <li><a class='dropdown-item' href="{% url 'logout' %}">Log Out</a></li>
+                            </ul>
+
+                        {% else %}
+
+                            <a href="{% url 'login' %}" class='btn btn-outline-success'>Log In</a>
+
+                            <a href="{% url 'signup' %}" class='btn btn-outline-primary'>Sign Up</a>
+
+                        {% endif %}
+                    </div>
+
                 </div>
 
-            {% else %}
-
-                <div class='btn-group'>
-
-                    <a href='{% url 'login' %}' class='btn btn-outline-success'>Log In</a>
-                    <a href='{% url 'signup' %}' class='btn btn-outline-primary'>Sign Up</a>
-
-                </div>
-
-            {% endif %}
             </div>
 
+        </nav>
     </header>
 
     <main>
-
         <div class='container'>
             {% block content %}
             {% endblock content %}

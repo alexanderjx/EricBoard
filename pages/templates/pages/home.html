@@ -11,7 +11,7 @@
               People named {{ user.first_name }} have restricted access to this site.
             </div>
         {% else %}
-            <div class="alert alert-primary" role="alert">
+            <div class='alert alert-primary' role='alert'>
               Rule 1: Don't let people named Eric post.
             </div>
         {% endif %}
@@ -19,8 +19,5 @@
     {% else %}
         <p>You are not logged in</p>
     {% endif %}
-
-    <p><a class='btn btn-primary btn-lg' href="{% url 'article_list' %}" role='button'>View all articles</a></p>
-
 
 {% endblock content %}
