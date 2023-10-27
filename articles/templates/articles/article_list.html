@@ -1,37 +1,47 @@
 {% extends 'base.html' %}
 
-{% block title %}Articles{% endblock title %}
+{% block title %}Posts{% endblock title %}
 
 {% block content %}
 
     <div class='button'>
-        <p><a class='btn btn-primary btn-lg' href="{% url 'article_new' %}"> New Eric Review</a></p>
+        <p><a class='btn btn-primary btn-lg' href="{% url 'article_new' %}"> New Post</a></p>
     </div>
 
     {% for article in article_list %}
         <div class='card'>
 
             <div class='card-header'>
-
                 <span class='fw-bold'>
-                    <a href='{{ article.get_absolute_url }}'>{{ article.title }}</a>
+                    <a class='btn btn-outline-primary btn-sm' href='{{ article.get_absolute_url }}'>{{ article.title }}</a>
                 </span> &middot;
 
                 <span class='text-muted'>
                     by {{ article.author }} | {{ article.date }}
                 </span>
-
             </div>
 
             <div class='card-body'>
                 {{ article.body }}
 
-                {% if article.author.pk == request.user.pk %}
-                    <a href="{% url 'article_edit' article.pk %}">Edit</a>
-                    <a href="{% url 'article_delete' article.pk %}">Delete</a>
-                {% endif %}
+                <div class='btn-group'>
 
-                <a href='{{ article.get_absolute_url }}'>New Comment</a>
+                    {% if user.is_eric %}
+                        <a class='btn btn-outline-primary disabled' href='{{ article.get_absolute_url }}' aria-disabled='true'>New Comment</a>
+                    {% else %}
+                        <a class='btn btn-outline-primary' href='{{ article.get_absolute_url }}'>New Comment</a>
+                    {% endif %}
+
+                    {% if article.author.pk == request.user.pk %}
+                        <a class='btn btn-outline-primary' href="{% url 'article_edit' article.pk %}">Edit</a>
+                        <a class='btn btn-outline-danger' href="{% url 'article_delete' article.pk %}">Delete</a>
+                    {% else %}
+                        <a class='btn btn-outline-primary disabled' href="{% url 'article_edit' article.pk %}" aria-disabled='true'>Edit</a>
+                        <a class='btn btn-outline-primary disabled' href="{% url 'article_delete' article.pk %}" aria-disabled='true'>Delete</a>
+                    {% endif %}
+
+                </div>
+
             </div>
 
             <div class='card-footer text-center text-muted'>
@@ -43,8 +53,8 @@
                         </span>
                         {{ comment }}
                     </p>
-
                 {% endfor %}
+
             </div>
 
         </div>

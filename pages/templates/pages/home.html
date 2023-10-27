@@ -6,13 +6,14 @@
 
     {% if user.is_authenticated %}
 
-        {% if user.first_name == 'Eric' or user.first_name == 'Erik' or user.first_name == 'Erick' %}
-            <p style='color:red;'>Warning: People named {{ user.first_name }} are not allowed to post!</p>
+        {% if user.is_eric %}
+            <div class="alert alert-danger" role="alert">
+              People named {{ user.first_name }} have restricted access to this site.
+            </div>
         {% else %}
-            <p>
-                Hi {{ user.first_name|default_if_none:user.username }}!
-                You are {{ user.age|default_if_none:'UNKNOWN'  }} years old.
-            </p>
+            <div class="alert alert-primary" role="alert">
+              Rule 1: Don't let people named Eric post.
+            </div>
         {% endif %}
 
     {% else %}
