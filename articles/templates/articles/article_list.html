@@ -28,16 +28,20 @@
 
                     {% if user.is_eric %}
                         <a class='btn btn-outline-primary disabled' href='{{ article.get_absolute_url }}' aria-disabled='true'>New Comment</a>
+
                     {% else %}
                         <a class='btn btn-outline-primary' href='{{ article.get_absolute_url }}'>New Comment</a>
+
                     {% endif %}
 
                     {% if article.author.pk == request.user.pk %}
                         <a class='btn btn-outline-primary' href="{% url 'article_edit' article.pk %}">Edit</a>
                         <a class='btn btn-outline-danger' href="{% url 'article_delete' article.pk %}">Delete</a>
+
                     {% else %}
                         <a class='btn btn-outline-primary disabled' href="{% url 'article_edit' article.pk %}" aria-disabled='true'>Edit</a>
                         <a class='btn btn-outline-primary disabled' href="{% url 'article_delete' article.pk %}" aria-disabled='true'>Delete</a>
+
                     {% endif %}
 
                 </div>
@@ -47,12 +51,10 @@
             <div class='card-footer text-center text-muted'>
 
                 {% for comment in article.comment_set.all %}
-                    <p>
-                        <span class='fw-bold'>
-                            {{ comment.author }} &middot;
-                        </span>
-                        {{ comment }}
-                    </p>
+                    <span class='fw-bold'>{{ comment.author }} </span>
+                    &middot;
+                    {{ comment }}
+
                 {% endfor %}
 
             </div>

@@ -12,13 +12,16 @@
 
     <div>
         <h4>Comments</h4>
+
         {% for comment in article.comment_set.all %}
             <p>{{ comment.author }} &middot; {{ comment }}</p>
+
         {% endfor %}
     </div>
 
     <div>
         <h4>Add a comment</h4>
+
         <form action='' method='post'>{% csrf_token %}
             {{ form|crispy }}
 
@@ -31,6 +34,7 @@
 
             {% else %}
                 <button class='btn btn-success m-1' type='submit'>Post</button>
+
             {% endif %}
 
         </form>
@@ -39,13 +43,17 @@
     <div class='card'>
 
          <div class='btn-group'>
+
             {% if article.author.pk == request.user.pk %}
                 <a class='btn btn-outline-success' href="{% url 'article_edit' article.pk %}">Edit</a>
                 <a class='btn btn-outline-danger' href="{% url 'article_delete' article.pk %}">Delete</a>
+
             {% else %}
                 <a class='btn btn-outline-success disabled' href="{% url 'article_edit' article.pk %}" aria-disabled='true'>Edit</a>
                 <a class='btn btn-outline-danger disabled' href="{% url 'article_delete' article.pk %}" aria-disabled='true'>Delete</a>
+
             {% endif %}
+
          </div>
 
     </div>

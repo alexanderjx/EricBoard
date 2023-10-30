@@ -8,16 +8,21 @@
 
         {% if user.is_eric %}
             <div class="alert alert-danger" role="alert">
-              People named {{ user.first_name }} have restricted access to this site.
+                People named {{ user.first_name }} have restricted access to this site.
             </div>
+
         {% else %}
             <div class='alert alert-primary' role='alert'>
-              Rule 1: Don't let people named Eric post.
+                Rule 1: Don't let people named Eric post.
             </div>
+
         {% endif %}
 
     {% else %}
-        <p>You are not logged in</p>
+        <div class='alert alert-primary' role='alert'>
+            You are not logged in
+        </div>
+
     {% endif %}
 
 {% endblock content %}
