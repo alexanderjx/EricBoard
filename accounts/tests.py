@@ -11,6 +11,7 @@ class UsersManagersTests(TestCase):
             email='testuser@example.com',
             password='testpass1234',
         )
+
         self.assertEqual(user.username, 'testuser')
         self.assertEqual(user.email, 'testuser@example.com')
         self.assertTrue(user.is_active)
@@ -24,6 +25,7 @@ class UsersManagersTests(TestCase):
             email='testsuperuser@example.com',
             password='testpass1234',
         )
+
         self.assertEqual(admin_user.username, 'testsuperuser')
         self.assertEqual(admin_user.email, 'testsuperuser@example.com')
         self.assertTrue(admin_user.is_active)
@@ -52,6 +54,7 @@ class SignupPageTests(TestCase):  # new
                 'password2': 'testpass123',
             },
         )
+
         self.assertEqual(response.status_code, 302)
         self.assertEqual(get_user_model().objects.all().count(), 1)
         self.assertEqual(get_user_model().objects.all()[0].username, 'testuser')
