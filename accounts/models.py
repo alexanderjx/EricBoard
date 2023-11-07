@@ -16,10 +16,8 @@ class CustomUser(AbstractUser):
             'eruuuuuc'
         ]
 
-        for i in eric_matrix:
-            if self.first_name.lower() == i:
-                return True
-            elif i in self.first_name:
-                return True
-            else:
-                return False
+        if self.first_name.lower() in eric_matrix:
+            return True
+
+        else:
+            return False
