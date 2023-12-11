@@ -13,11 +13,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('SECRET_KEY')
+SECRET_KEY: object = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', default=False)
 
+
+DEBUG = True
+
+SECRET_KEY='P-nANOVu00gcWQGzIGVZG0heD3BGgSCIZ3S2fi8SQcQ'
+
+# Base url to serve media files
+MEDIA_URL = '/media/'
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://*.fly.dev']
 
