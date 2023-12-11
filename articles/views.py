@@ -8,7 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Article
 from .forms import CommentForm
 
-
 class ArticleListView(ListView):
     model = Article
     template_name = 'articles/article_list.html'
