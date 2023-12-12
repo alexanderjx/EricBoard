@@ -18,8 +18,8 @@ SECRET_KEY = env.str('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://*.fly.dev']
+ALLOWED_HOSTS = ['34.229.244.125', 'ec2-34-229-244-125.compute-1.amazonaws.com', 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['http://ec2-34-229-244-125.compute-1.amazonaws.com', 'https://ec2-34-229-244-125.compute-1.amazonaws.com']
 
 # Application definition
 
@@ -76,7 +76,14 @@ WSGI_APPLICATION = 'EricBoard.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': env.dj_db_url('DATABASE_URL', default='sqlite:///db.sqlite3'),
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'EricBoard',
+        'HOST': '/opt/bitnami/mariadb/tmp/mysql.sock',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': 'NXmUSSnd+nI0'
+    }
 }
 
 
@@ -114,7 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
